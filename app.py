@@ -1,3 +1,4 @@
+from tracing import init_telemetry
 import os
 import sys
 import threading
@@ -117,6 +118,7 @@ def sqs_worker_loop():
 # --- Servidor Flask (Apenas para Health Check) ---
 
 app = Flask(__name__)
+init_telemetry(app, 'analytics-service')
 
 @app.route('/health')
 def health():
